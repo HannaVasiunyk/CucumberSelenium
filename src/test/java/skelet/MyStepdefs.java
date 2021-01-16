@@ -12,14 +12,6 @@ import java.util.concurrent.TimeUnit;
 public class MyStepdefs {
     protected static ChromeDriver driver;
 
-    public boolean isPresent() {
-        WebElement date = driver.findElementById("latest-tag");
-        if (date != null) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     @Given("^I open google page$")
     public void openGooglePage() {
@@ -40,8 +32,13 @@ public class MyStepdefs {
     }
 
     @And("^I verify that the date is present$")
-    public void iVerifyThatTheDateIsPresent() {
-        Assert.assertTrue(isPresent());
+    public boolean iVerifyThatTheDateIsPresent() {
+        WebElement date = driver.findElementById("latest-tag");
+        if (date != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Then("^Close chrome$")
